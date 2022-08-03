@@ -1,4 +1,4 @@
 export enum TipoPatrimonio {
-    CPU = 'CPU',
+    CPU = 'cpu',
     Monitor = 'monitor',
 }
