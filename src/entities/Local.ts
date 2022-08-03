@@ -1,7 +1,8 @@
 export default interface Local {
-    id: number
-    nome: string
-    pai: Local | null
-    usuario: string
-    dataAlteracao: Date
+    id?: number
+    nome?: string
+    paiId?: number
+    pai?: Local
+    usuario?: string
+    dataAlteracao?: Date
 }

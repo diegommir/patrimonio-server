@@ -9,14 +9,6 @@ LocalModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    pai: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: LocalModel,
-            key: 'id'
-        }
-    },
     usuario: {
         type: DataTypes.STRING,
         allowNull: false
@@ -26,4 +18,8 @@ LocalModel.init({
     tableName: 'Local',
     createdAt: false,
     updatedAt: 'dataAlteracao'
+})
+
+LocalModel.belongsTo(LocalModel, {
+    as: 'pai'
 })

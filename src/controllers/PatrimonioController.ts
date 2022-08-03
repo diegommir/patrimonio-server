@@ -5,11 +5,11 @@ import Controller from "./Controller"
 export default class PatrimonioController extends Controller {
     constructor() {
         super()
+        PatrimonioModel.sync()
     }
 
     async consultar(patrimonio: Patrimonio): Promise<Patrimonio> {
-        const patrimonioModels = await PatrimonioModel.findAll()
-        return <Patrimonio>(<unknown>patrimonioModels[0])
+        return <Patrimonio>await PatrimonioModel.findByPk(patrimonio.id)
     }
 
     async listar(): Promise<Patrimonio[]> {
@@ -17,7 +17,6 @@ export default class PatrimonioController extends Controller {
     }
 
     async salvar(patrimonio: Patrimonio) {
-        await PatrimonioModel.sync()
         console.log('Patrimonio:', patrimonio)
 
         if (patrimonio.id) {

@@ -1,16 +1,19 @@
 import express from 'express'
+import bodyParser from 'body-parser'
+import patrimonioRouter from './routes/PatrimonioRouter'
+import localRouter from './routes/LocalRouter'
 
 const app = express()
 
-app.get('/', async (req, res, next) => {
-    res.json({
-        'message': 'ok'
-    })
-})
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
+app.use('/patrimonio', patrimonioRouter)
+app.use('/local', localRouter)
 
 //Default 404
 app.use(function (req, res) {
-    res.status(404)
+    res.sendStatus(404)
 })
 
 export default app
