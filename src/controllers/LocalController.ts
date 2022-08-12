@@ -38,10 +38,6 @@ export default class LocalController extends Controller {
     }
 
     private async alterar(local: Local): Promise<Local> {
-        if (!local.id) {
-            throw new Error('Não é possível alterar um Local sem id.')
-        }
-
         const localOld = await LocalModel.findByPk(local.id)
         if (!localOld) {
             throw new Error('Não é possível alterar este Local. Local inexistente.')
@@ -50,7 +46,6 @@ export default class LocalController extends Controller {
         localOld.set(local)
 
         local = <Local>await localOld.save()
-        console.log(local)
 
         return local
     }
