@@ -26,9 +26,13 @@ export default class LocalController extends Controller {
     async salvar(local: Local): Promise<Local> {
         local.usuario = this.usuarioLogado
 
-        if (local.pai) {
+        if (local.pai && local.pai.id) {
             local.paiId = local.pai.id
+        } else {
+            local.paiId = undefined
         }
+
+        console.log('Salvar Local:', local)
 
         if (local.id) {
             return this.alterar(local)
@@ -51,6 +55,7 @@ export default class LocalController extends Controller {
     }
 
     private async incluir(local: Local): Promise<Local> {
+        local.id = undefined
         return <Local>LocalModel.create(<any>local)
     }
 }
